@@ -191,6 +191,12 @@ resource "aws_route_table" "public" {
 
   vpc_id = local.vpc_id
 
+  lifecycle {
+    ignore_changes = [
+       route,
+    ]
+  }
+  
   tags = merge(
     { "Name" = "${var.name}-${var.public_subnet_suffix}" },
     var.tags,
@@ -207,6 +213,11 @@ resource "aws_route" "public_internet_gateway" {
 
   timeouts {
     create = "5m"
+  }
+  lifecycle {
+    ignore_changes = [
+       vpc_endpoint_id, gateway_id
+    ]
   }
 }
 
