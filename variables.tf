@@ -232,6 +232,12 @@ variable "create_elasticache_subnet_route_table" {
   default     = false
 }
 
+variable "create_route_table_association_public" {
+  description = "Controls if route table association should be created for public subnets"
+  type        = bool
+  default     = true
+}
+
 variable "create_database_subnet_group" {
   description = "Controls if database subnet group should be created (n.b. database_subnets must also be set)"
   type        = bool
